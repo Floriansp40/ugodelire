@@ -1,7 +1,8 @@
 name: DockerHub and Deploy
 
 on:
-    workflow_call
+    push:
+        branches: ["main"]
 
 jobs:
     push:
