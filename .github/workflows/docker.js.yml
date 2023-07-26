@@ -37,8 +37,27 @@ jobs:
                 tags: ${{ steps.meta.outputs.tags }}
                 labels: ${{ steps.meta.outputs.labels }}
 
+    compose:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3
+
+            - name: Copy compose
+              uses: appleboy/scp-action@v0.1.4
+              with:
+                host: ${{ secrets.HOST }}
+                port: ${{ secrets.PORT }}
+
+                username: ${{ secrets.LOGIN }}
+                password: ${{ secrets.PWD }}
+
+                source: "./docker-compose.yml"
+                target: "."
+
     pull:
-        needs: push
+        needs: [push,compose]
         runs-on: ubuntu-latest
 
         steps:
@@ -52,8 +71,12 @@ jobs:
                 password: ${{ secrets.PWD }}
 
                 #script: bash update.sh
+                # script: |
+                #   docker pull arocode/ugodelire:main
+                #   docker rm -f marcel
+                #   docker run -d -p 8888:8888 --name marcel arocode/ugodelire:main
                 script: |
                   docker pull arocode/ugodelire:main
-                  docker rm -f marcel
-                  docker run -d -p 8888:8888 --name marcel arocode/ugodelire:main
+                  docker-compose up -d
+
 

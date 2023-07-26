@@ -21,6 +21,7 @@ app.all('*', (req, res) => res.status(501).send(`What the hell are you doing ?`)
 /***************/
 /*** START API */
 
+console.log(process.env.DB_HOST)
 const server = app.listen(process.env.SERVER_PORT, () => {
     console.log(`This server is running on port ${process.env.SERVER_PORT}. Have Fun !`)
 })
