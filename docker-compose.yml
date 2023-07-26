@@ -12,7 +12,7 @@ services:
 
   api:
     container_name: marcel
-    images: arocode/ugodelire:main
+    image: arocode/ugodelire:main
     ports:
       - 8888:8888
     environment:
