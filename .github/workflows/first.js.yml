@@ -50,3 +50,8 @@ jobs:
                 node-version: 18.x
             - name: Run blague
               run: echo blague
+
+    deploy:
+      needs: route
+      uses: ./.github/workflows/docker.js.yml
+      secrets: inherit
