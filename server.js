@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: true}))
 /***********************/
 /*** ROUTAGE PRINCIPAL */
 
-app.get('/', (req, res) => res.send(`Good Job, this API is running now.........with ghcr`))
+app.get('/', (req, res) => res.send(`Good Job, this API is running now.........with ghcr et lucas`))
 
 app.all('*', (req, res) => res.status(501).send(`What the hell are you doing ?`))
 
